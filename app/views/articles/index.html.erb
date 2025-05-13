@@ -12,7 +12,7 @@
 <tr>
 <td><%= article.title %></td>
 <td><%= article.description %></td>
-<td>placeholder</td>
+<td><%= button_to 'Delete', article_path(article), method: :delete, data: { turbo: false } %></td>
 </tr>
 <% end %>
 </tbody>
