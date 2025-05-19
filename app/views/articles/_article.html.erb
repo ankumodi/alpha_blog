@@ -29,7 +29,7 @@
 <div class ="col-8">
 <div class="card text-center">
   <div class="card-header">
-    by <%= article.user.username %>
+    by <%= link_to article.user.username, user_path(article.user) %>
   </div>
   <div class="card-body">
     <h5 class="card-title"><%= article.title %></h5>
