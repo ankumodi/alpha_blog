@@ -1,42 +1,48 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
-    <a class="navbar-brand" id="logo" href="#">APHA BLOG</a>
+    <%= link_to "ALPHA BLOG", root_path, class: "navbar-brand", id: "logo" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <%= link_to 'Blogger', users_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            Articles
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <% if logged_in? %>
+              <li><%= link_to 'Create new Article', new_article_path, class: "dropdown-item" %></li>
+              <li>
+            <% end %>
+            <li><%= link_to 'View Articles', articles_path, class: "dropdown-item" %></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
         </li>
         <% if logged_in? %>
-          <li class="nav-item">
-            <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Profile [<%= current_user.username %>]
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'View your profile', user_path(current_user), class: "dropdown-item" %></li>
+              <li><%= link_to 'Edit your profile', edit_user_path(current_user), class: "dropdown-item" %></li>
+            </ul>
           </li>
           <li class="nav-item">
-          <%= button_to 'Log out', logout_path, class: "nav-link", method: :delete %>
-        </li>
+            <%= button_to 'Log out', logout_path, class: "nav-link", method: :delete %>
+          </li>
         <% else %>  
           <li class="nav-item">
             <%= link_to 'Log in', login_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-          <%= link_to 'Sign up', signup_path, class: "nav-link" %>
-        </li>
+            <%= link_to 'Sign up', signup_path, class: "nav-link" %>
+          </li>
         <% end %>
       </ul>
       <form class="d-flex" role="search">

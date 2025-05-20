@@ -1,10 +1,6 @@
 <%= render 'shared/errors', obj: @article %>
 
   <%= form_with model: @article, local: true, data: { turbo: false } do |f| %>
-    <p>
-    <%= f.label :user %><br/>
-    <%= f.text_field :user_id %>
-  </p>
   <p>
     <%= f.label :title %><br/>
     <%= f.text_field :title %>
