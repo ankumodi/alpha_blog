@@ -12,7 +12,7 @@
           <h5 class="card-title"><%= article.title %></h5>
           <p class="card-text"><%= article.description %></p>
           <%= link_to 'show', article_path(article), class:"btn btn-outline-primary" %>
-          <% if logged_in? && article.user == current_user %>
+          <% if logged_in? && (article.user == current_user || current_user.admin?) %>
           <%= link_to 'edit', edit_article_path(article), class: "btn btn-outline-info" %>
           <%= button_to 'delete', article_path(article), method: :delete, data: { turbo: false }, class: "btn btn-outline-danger", form_class: "inline-form" %>
           <% end %>
